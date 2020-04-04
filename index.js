@@ -1,10 +1,10 @@
 const output = document.getElementById('output');
 
-const solve = () => (output.value = eval(output.value));
-const display = value => (output.value += value);
+const solve = () => (output.innerHTML = eval(output.innerHTML));
+const display = value => output.innerHTML == 0 ? (output.innerHTML = value): (output.innerHTML += value);
 
-document.addEventListener('click', (event) => {
-  event.target.matches('.btn') ? display(event.target.dataset.keyValue) : false;
-  event.target.matches('.equals') ? solve() : false;
-  event.target.matches('.clear') ? (output.value = '') : false;
+document.addEventListener('click', event => {
+  event.target.matches('.btn') && display(event.target.dataset.keyValue);
+  event.target.matches('.equals') && solve();
+  event.target.matches('.clear') && (output.innerHTML = '0');
 });
